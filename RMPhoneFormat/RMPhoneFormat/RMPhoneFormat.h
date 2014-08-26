@@ -31,9 +31,12 @@
 
 + (RMPhoneFormat *)instance;
 
++ (NSString *)strip:(NSString *)str;
+
 - (id)init;
 - (id)initWithDefaultCountry:(NSString *)countryCode;
 
+- (NSString *)format:(NSString *)str forceIntl:(BOOL)forceIntl;
 - (NSString *)format:(NSString *)str;
 
 // Calling code for the user's default country based on their Region Format setting

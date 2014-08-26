@@ -498,6 +498,11 @@
 }
 
 - (NSString *)format:(NSString *)orig {
+  return [self format:orig forceIntl:NO];
+}
+
+- (NSString *)format:(NSString *)orig forceIntl:(BOOL)forceIntl
+{
     // First see if the number starts with either the country's trunk prefix or international prefix. If so save it
     // off and remove from the number.
     NSString *str = orig;
@@ -511,6 +516,12 @@
         if (trunk) {
             trunkPrefix = trunk;
             str = [str substringFromIndex:[trunkPrefix length]];
+        }
+      
+        if(forceIntl)
+        {
+          intlPrefix = self.callingCode;
+          trunkPrefix = nil;
         }
     }
 
