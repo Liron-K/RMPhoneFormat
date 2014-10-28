@@ -665,6 +665,16 @@ static NSMutableDictionary *flagRules = nil;
       NSLocale *loc = [NSLocale currentLocale];
       _defaultCountry = [[loc objectForKey:NSLocaleCountryCode] lowercaseString];
     }
+    if(_defaultCountry == nil)
+    {
+      NSLocale* loc = [NSLocale systemLocale];
+      _defaultCountry = [[loc objectForKey:NSLocaleCountryCode] lowercaseString];
+    }
+    if(_defaultCountry == nil)
+    {
+      _defaultCountry = @"us";
+    }
+    
     _callingCodeOffsets = [[NSMutableDictionary alloc] initWithCapacity:255];
     _callingCodeCountries = [[NSMutableDictionary alloc] initWithCapacity:255];
     _callingCodeData = [[NSMutableDictionary alloc] initWithCapacity:10];
