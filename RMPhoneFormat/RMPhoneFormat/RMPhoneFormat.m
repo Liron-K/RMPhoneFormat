@@ -672,6 +672,16 @@ static NSMutableDictionary *flagRules = nil;
     }
     if(_defaultCountry == nil)
     {
+      NSLocale* loc = [NSLocale currentLocale];
+      NSString* language = [loc objectForKey:NSLocaleLanguageCode];
+      NSArray* langSplit = [language componentsSeparatedByString:@"_"];
+      if([langSplit count] == 2)
+      {
+        _defaultCountry = [langSplit[0] lowercaseString];
+      }
+    }
+    if(_defaultCountry == nil)
+    {
       _defaultCountry = @"us";
     }
     
